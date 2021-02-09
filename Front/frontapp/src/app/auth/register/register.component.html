@@ -1,0 +1,35 @@
+  <div fxLayout="row" fxLayoutAlign="center center" class="register-main">
+
+    <mat-card >
+      <form class="form-signin" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <mat-card-header>
+      <mat-card-title>Customer Signup</mat-card-title>
+    </mat-card-header>
+    <mat-card-content fxLayout="column">
+
+      <mat-form-field>
+        <input matInput  id="inputUsername" [formControlName]="'username'" placeholder="username">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput  id="inputEmail" [formControlName]="'email'" placeholder="Email">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="password" id="inputPassword"  [formControlName]="'password'"  placeholder="password">
+      </mat-form-field>
+        <mat-form-field>
+        <input matInput type="password" id="inputConfirmPassword"  [formControlName]="'confirmPassword'"  placeholder="Confirmpassword">
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-raised-button color="primary" type="submit">Create Account</button>
+    </mat-card-actions>
+  </form>
+    </mat-card>
+    </div>
+    
+      
+  <div *ngIf="rmsg!=null">
+    <mat-card>
+    {{rmsg}}</mat-card>
+  </div>
+

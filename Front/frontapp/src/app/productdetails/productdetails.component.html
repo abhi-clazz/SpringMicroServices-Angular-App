@@ -1,0 +1,23 @@
+
+<div class=' container'>
+  <mat-card class="example-card ">
+    <mat-card-header>
+      
+        <mat-card-title>Model:{{product?.productName}}</mat-card-title>
+      <mat-card-subtitle>Maker:{{product?.brand}}</mat-card-subtitle>
+    </mat-card-header>
+        <img  src="assets/{{product?.productImageFile}}"  class="img-responsive" width= 200px height='300px'>
+
+        <mat-card-actions>
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions>
+    <mat-card-actions>
+        <!-- <button routerLink='/ok1' mat-button color="primary">Buy now</button> -->
+        <form  (ngSubmit)="addcart(product)"   >
+      <!-- <input  type="hidden" value={{product?.productName}} [formControlName]="'pid'"> -->
+        <button type="submit" mat-raised-button color="primary">add to cart</button></form>
+        <a type="button" routerLink='/ok1'></a>
+    </mat-card-actions>
+  </mat-card> 
+</div>

@@ -1,0 +1,28 @@
+<mat-toolbar  color="primary">
+  <!-- <div class=''><button mat-icon-button  class="example-icon" aria-label="Example icon-button with menu icon">
+ </button></div> -->
+    <a  mat-button href="/"><div class="col-md-3">frontapp</div></a>
+ <div class="example-button-container">
+  <button onclick="window.location.href='' "  mat-icon-button color="primary" aria-label="Example icon button with a home icon">
+    <mat-icon>home</mat-icon>
+  </button>
+</div>
+ <span class="example-spacer"></span>
+ <div class="col-md-3" *ngIf="authService.isAuthenticated()">
+  <button mat-button (click)="logout()">Logout</button>
+  <a mat-button href="/viewcart" class="register btn btn-default">Cart</a>
+    
+  <a  mat-button href="#" class="register btn btn-default">My Orders</a>
+</div>
+<div class="col-md-3" *ngIf="!authService.isAuthenticated()">
+  <a  mat-button href="/login" class="login btn btn-default">Login</a>
+  <a mat-button href="/register" class="register btn btn-default">Register</a>
+  <a mat-button href="#" class="register btn btn-default">About us</a>
+  <a mat-button href="#" class="register btn btn-default">Reach us</a>
+
+ 
+
+
+</div>
+</mat-toolbar>
+

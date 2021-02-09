@@ -1,0 +1,21 @@
+server:
+ port: 8100
+spring:
+ application:
+  name: app-gateway-service
+  
+
+zuul:
+ routes:
+  products:
+   path: /api/Product-service/**
+   serviceId: Product-service
+  orders:
+   path: /api/App-OrderService/**
+   serviceId: App-OrderService
+  carts:
+   path: /api/CartService/**
+   serviceId: CartService
+
+ 
+  

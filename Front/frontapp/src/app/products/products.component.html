@@ -1,0 +1,21 @@
+<h1 class='text-center'>frontapp PRODUCTS</h1>
+<div class=' container'>
+        <div class='row'>
+          <div class="col-3 align-left" *ngFor="let product of products | async" >
+            <br>
+            <div class='card'>
+              <div class="card-body">
+                <h5 class="card-title text-center">{{product.productName}}</h5>
+                <a  type="button" mat-raised-button routerLink="/product/{{product.productId}}" class= "text-center">View</a>
+
+                  <img src="assets/{{product.productImageFile}}" class='img-responsive' height="150px" width='200px'>
+<p></p>                  <p class="text-center">{{product.price}}</p>
+               <p class="text-center">   <button  class='text-center' (click)="buy(product)" mat-raised-button color="primary">Quick Buy</button>
+               </p>
+              </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>

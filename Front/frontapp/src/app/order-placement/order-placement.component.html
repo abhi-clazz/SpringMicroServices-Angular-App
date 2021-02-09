@@ -1,0 +1,149 @@
+
+  <div class="container jumbotron">
+  <mat-horizontal-stepper  linear #stepper>
+    <mat-step [stepControl]="firstFormGroup"class='container jumbotron' >
+      <form [formGroup]="firstFormGroup" >
+        <ng-template matStepLabel>Shipping Details</ng-template>
+        <div class='row'>
+          <div class='col'>
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" placeholder="Last name, First name" required>
+          
+        </mat-form-field>
+      </div>
+      <div class='col'>
+        <mat-form-field>
+            <mat-label>Mobile</mat-label>
+            <input matInput formControlName="mobile" placeholder="contact number" required>
+            
+          </mat-form-field>
+             </div>
+
+            </div>
+            <div class='row'>
+              <div class='col'>
+            <mat-form-field>
+              <mat-label>Shipping Location</mat-label>
+              <input matInput formControlName="address" placeholder="Shipping address" required>
+              
+            </mat-form-field>
+          </div>
+          <div class='col'>
+            <mat-form-field>
+                <mat-label>Invoice Address</mat-label>
+                <input matInput formControlName="badd" placeholder="Billing Address" required>
+                
+              </mat-form-field>
+                 </div>
+    
+                </div>
+                <div class='row'>
+                  <div class='col'>
+                <mat-form-field>
+                  <mat-label>City</mat-label>
+                  <input matInput formControlName="city" placeholder="City" required>
+                  
+                </mat-form-field>
+              </div>
+              <div class='col'>
+                <mat-form-field>
+                    <mat-label>PIN</mat-label>
+                    <input matInput formControlName="pin" placeholder="ZIP" required>
+                    
+                  </mat-form-field>
+                     </div>
+        
+                    </div>
+                    <hr>
+        <div class=''>
+          <button type="button"  mat-raised-button color="primary"matStepperNext>Proceed to Payment</button>
+
+        </div>
+        <hr>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" >
+      <div class="row">
+  <div class="col-75">
+    <div class="container">
+      <form action="/action_page.php">
+
+        <div class="row">
+         
+
+          <div class="col-50">
+            <h3>Payment</h3>
+            <label for="fname">Accepted Cards</label>
+            <div class="icon-container">
+              <i class="fa fa-cc-visa" style="color:navy;"></i>
+              <i class="fa fa-cc-amex" style="color:blue;"></i>
+              <i class="fa fa-cc-mastercard" style="color:red;"></i>
+              <i class="fa fa-cc-discover" style="color:orange;"></i>
+            </div>
+            <label for="cname">Name on Card</label>
+            <input type="text" id="cname" name="cardname" placeholder="John More Doe">
+            <label for="ccnum">Credit card number</label>
+            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+            <label for="expmonth">Exp Month</label>
+            <input type="text" id="expmonth" name="expmonth" placeholder="September">
+
+            <div class="row">
+              <div class="col-50">
+                <label for="expyear">Exp Year</label>
+                <input type="text" id="expyear" name="expyear" placeholder="2018">
+              </div>
+              <div class="col-50">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" name="cvv" placeholder="352">
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <label>
+          <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+        </label>
+        <input type="submit" value="Continue to checkout" class="btn">
+      </form>
+    </div>
+  </div>
+
+  <div class="col-25">
+    <div class="container">
+      <h4>Cart
+        <span class="price" style="color:black">
+          <i class="fa fa-shopping-cart"></i>
+          <b>{{q.cartId}}</b>
+        </span>
+      </h4>
+      <p><a href="#">Product {{q.productName}}</a> <span class="price">{{q.price}}</span></p>
+     
+      <hr>
+      <p>Total <span class="price" style="color:black"><b>{{q.price}}</b></span></p>
+    </div>
+  </div>
+</div>
+      <form [formGroup]="secondFormGroup" >
+        <ng-template matStepLabel> Payment</ng-template>
+        <mat-form-field>
+          <mat-label>Address</mat-label>
+          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                 required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button type="button" matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button type="button"  (click)="pay()">Pay</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>
