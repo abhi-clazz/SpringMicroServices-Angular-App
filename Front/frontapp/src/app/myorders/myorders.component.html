@@ -1,0 +1,32 @@
+<p>myorders works!</p>
+
+<div class='container' >
+    
+    <div class='row   '>
+<div class='col-md'>orderId</div>
+<div class='col-md'>userId</div>
+<div class='col-md'>productId</div>
+<div class='col-md'>quantity</div>
+<div class='col-md'> action </div>
+<div class='col-md'>Action   </div>
+
+
+
+    </div>
+    <hr>
+<div class='container' *ngFor="let order of orders | async">
+    
+    <div class='row   '>
+<div class='col-md'>{{order.orderId}}</div>
+<div class='col-md'>{{order.userId}}</div>
+<div class='col-md'>{{order.productId}}</div>
+<div class='col-md'>{{order.quantity}}</div>
+<div class='col-md'><button mat-raised-button color="primary">Cancel</button></div>
+<div class='col-md'><button button mat-raised-button color="accent">View</button></div>
+
+
+
+    </div>
+    <hr>
+
+</div>

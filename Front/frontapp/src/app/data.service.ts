@@ -43,4 +43,12 @@ export class DataService {
   {
     this.apiData3.next(data)
   }
+
+  private itemData=new BehaviorSubject<any>(null);
+  public itemData$=this.itemData.asObservable();
+
+  setitemData(data:any)
+  {
+    this.itemData.next(data)
+  }
 }

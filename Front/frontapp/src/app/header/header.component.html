@@ -1,18 +1,23 @@
 <mat-toolbar  color="primary">
   <!-- <div class=''><button mat-icon-button  class="example-icon" aria-label="Example icon-button with menu icon">
  </button></div> -->
-    <a  mat-button href="/"><div class="col-md-3">frontapp</div></a>
+    <a  mat-button href="/"><div class="col-md-3">App</div></a>
  <div class="example-button-container">
-  <button onclick="window.location.href='' "  mat-icon-button color="primary" aria-label="Example icon button with a home icon">
-    <mat-icon>home</mat-icon>
-  </button>
+  <form  [formGroup]="searchForm" (ngSubmit)="search()" novalidate>
+
+    <input type='text' id="item" [formControlName]="'item'" placeholder='Search Products...'><button  class='button1' type="submit"><i class='fa fa-search'></i></button>
+</form>
 </div>
  <span class="example-spacer"></span>
- <div class="col-md-3" *ngIf="authService.isAuthenticated()">
-  <button mat-button (click)="logout()">Logout</button>
+ <div  *ngIf="authService.isAuthenticated()">
+  <button onclick="window.location.href='' "  mat-icon-button  aria-label="Example icon button with a home icon">
+    <mat-icon>home</mat-icon>
+  </button> 
   <a mat-button href="/viewcart" class="register btn btn-default">Cart</a>
     
-  <a  mat-button href="#" class="register btn btn-default">My Orders</a>
+  <a  mat-button href="/myorders" class="register btn btn-default">My Orders</a>
+  <button mat-button (click)="logout()">Logout</button>
+
 </div>
 <div class="col-md-3" *ngIf="!authService.isAuthenticated()">
   <a  mat-button href="/login" class="login btn btn-default">Login</a>

@@ -20,6 +20,8 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
+
+
 import {MatButtonModule} from '@angular/material/button';
 import { ProductsComponent } from './products/products.component';
 import {MatIconModule} from '@angular/material/icon';
@@ -30,6 +32,11 @@ import { ProductdetailsComponent } from './productdetails/productdetails.compone
 import { OrderPlacementComponent } from './order-placement/order-placement.component';
 import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
 import { ViewcartComponent } from './viewcart/viewcart.component';
+import { MyordersComponent } from './myorders/myorders.component';
+import { ShippingComponent } from './shipping/shipping.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { ProductsearchlistComponent } from './productsearchlist/productsearchlist.component';
 
 
 @NgModule({
@@ -44,7 +51,10 @@ import { ViewcartComponent } from './viewcart/viewcart.component';
     ProductdetailsComponent,
     OrderPlacementComponent,
     OrderConfirmationComponent,
-    ViewcartComponent
+    ViewcartComponent,
+    MyordersComponent,
+    ShippingComponent,
+    ProductsearchlistComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +65,7 @@ import { ViewcartComponent } from './viewcart/viewcart.component';
     MatFormFieldModule,MatInputModule,MatProgressSpinnerModule,MatStepperModule,
     MatCardModule,
     MatButtonModule,MatToolbarModule,MatIconModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule,MatRadioModule,MatSelectModule,
     NgxWebstorageModule.forRoot(),
     RouterModule.forRoot([
       {path: '', component: ProductsComponent,canActivate: [AuthGuard]},
@@ -63,6 +73,8 @@ import { ViewcartComponent } from './viewcart/viewcart.component';
       {path: 'product/:id', component: ProductdetailsComponent,canActivate: [AuthGuard]},
       // {path: 'placeorder/:id/:id1', component: OrderPlacementComponent,canActivate: [AuthGuard]},
       {path: 'placeorder', component: OrderPlacementComponent,canActivate: [AuthGuard]},
+      {path: 'ship', component: ShippingComponent,canActivate: [AuthGuard]},
+      {path: 'productitems', component: ProductsearchlistComponent,canActivate: [AuthGuard]},
 
       {path: 'login', component: LoginComponent},
       {path: 'viewcart', component: ViewcartComponent,canActivate: [AuthGuard]},
@@ -70,10 +82,14 @@ import { ViewcartComponent } from './viewcart/viewcart.component';
       {path: 'register-success', component: RegisterSuccessComponent,canActivate: [AuthGuard]},
       {path: 'home', component: ProductsComponent,canActivate: [AuthGuard]},
       {path: 'ordersuccess', component: OrderConfirmationComponent,canActivate: [AuthGuard]},
+            {path: 'myorders', component: MyordersComponent, canActivate: [AuthGuard]},
+
 
     ]),
     HttpClientModule,
-    EditorModule
+    EditorModule,
+    MatSelectModule,
+    MatRadioModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: HttpClientInterceptor, multi: true}],
   bootstrap: [AppComponent]
