@@ -59,4 +59,8 @@ public ResponseTemplateVO getdata(Long id)
 		return order;
 		
 	}
+
+	public List<Order> getOrderByUserId(int id) {
+		return orderRepository.findAllByUserId(id);
+	}
 }

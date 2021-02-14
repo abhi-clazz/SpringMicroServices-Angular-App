@@ -17,4 +17,6 @@ public interface OrderService {
 	List<Order> getOrders();
 	 ResponseTemplateVO getdata(Long id);
 
+	List<Order> getOrderByUserId(int id);
+
 }

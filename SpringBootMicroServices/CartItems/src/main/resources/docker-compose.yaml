@@ -1,0 +1,39 @@
+version: '3.7'
+
+services:
+  docker-mysql:
+    image: mysql:latest
+
+    environment: 
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL__DATABASE=micro
+      - MYSQL_USER=root
+      - MYSQL_ROOT_HOST='%'
+    ports:
+      - 6626:3306
+    volumes:
+      - /data/mysql
+
+  CartService:
+    image: abhiclazz/cart-cartitems:0.0.5-SNAPSHOT
+    ports:
+      - "8050:8079"
+    links:
+      - docker-mysql
+
+      
+    depends_on: 
+      - App-NamingServerRegistry
+      - docker-mysql
+    environment: 
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://App-NamingServerRegistry:8761/eureka
+
+
+  App-NamingServerRegistry: 
+    image: abhiclazz/registry-namingserver:0.0.1-SNAPSHOT
+    ports:
+      - "8741:8761"
+
+
+
+

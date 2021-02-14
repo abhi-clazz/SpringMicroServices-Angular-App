@@ -52,5 +52,11 @@ public class OrderController {
 		return orderService.getOrderById(id);
 				
 	}
+	@RequestMapping(value="/UserOrders/{id}", method = RequestMethod.GET)
+	public List<Order> getOrderByUserId(@PathVariable int id)
+	{
+		return orderService.getOrderByUserId(id);
+				
+	}
 
 }

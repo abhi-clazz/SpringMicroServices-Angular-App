@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.micro.product</groupId>
-	<artifactId>Productservice</artifactId>
+	<artifactId>productservice</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Productservice</name>
 	<description>Productservice</description>
@@ -117,7 +117,13 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
+				<configuration>	
+				<image>
+				<name>abhiclazz/product-${project.artifactId}:${project.version}</name>
+				</image>
+				<pullPoicy>IF_NOT_PRESENT</pullPoicy>
+				
+				
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>

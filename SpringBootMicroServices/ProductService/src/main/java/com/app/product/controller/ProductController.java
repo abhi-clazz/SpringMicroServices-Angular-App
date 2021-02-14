@@ -63,5 +63,11 @@ public class ProductController {
 		return productService.getProductById(id);
 				
 	}
+	@RequestMapping(value="/InventoryProducts/{name}", method = RequestMethod.GET)
+	public List<Product> getProducts1(@PathVariable String name)
+	{System.out.println("searching inventory");
+		return productService.getProductsByName(name);
+				
+	}
 
 }

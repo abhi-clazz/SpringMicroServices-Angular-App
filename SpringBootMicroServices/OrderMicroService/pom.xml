@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ekart</groupId>
-	<artifactId>OrderMicroService</artifactId>
+	<artifactId>ordermicroservice</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>OrderMicroService</name>
 	<description>order service</description>
@@ -76,6 +76,10 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+				<image>
+				<name>abhiclazz/order-${project.artifactId}:${project.version}</name>
+				</image>
+				<pullPoicy>IF_NOT_PRESENT</pullPoicy>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>

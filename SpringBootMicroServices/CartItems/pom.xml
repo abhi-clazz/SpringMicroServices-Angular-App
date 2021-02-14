@@ -9,8 +9,8 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.app.cart</groupId>
-	<artifactId>CartItems</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>cartitems</artifactId>
+	<version>0.0.5-SNAPSHOT</version>
 	<name>CartItems</name>
 	<description>cartservice</description>
 	<properties>
@@ -81,6 +81,12 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+				<image>
+				<name>abhiclazz/cart-${project.artifactId}:${project.version}</name>
+				</image>
+				<pullPoicy>IF_NOT_PRESENT</pullPoicy>
+				
+				
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>

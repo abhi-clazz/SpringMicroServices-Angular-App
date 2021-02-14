@@ -22,7 +22,10 @@ public List<Product> getProducts()
 {
 return productRepository.findAll();	
 }
-
+public List<Product> getProductsByName(String name)
+{
+return productRepository.findAllByProductName(name);	
+}
 public void addProduct(Product prod)
 {
 	productRepository.save(prod);
