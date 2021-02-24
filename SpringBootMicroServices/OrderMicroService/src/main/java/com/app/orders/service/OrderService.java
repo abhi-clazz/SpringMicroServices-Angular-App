@@ -2,6 +2,8 @@ package com.app.orders.service;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+
 import com.app.orders.VO.ResponseTemplateVO;
 import com.app.orders.model.Order;
 
@@ -15,7 +17,7 @@ public interface OrderService {
 	void deleteOrder(long id);
 
 	List<Order> getOrders();
-	 ResponseTemplateVO getdata(Long id);
+	 void bulkorder(Order order);
 
 	List<Order> getOrderByUserId(int id);
 

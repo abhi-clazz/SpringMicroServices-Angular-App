@@ -1,12 +1,11 @@
 package com.users.app.security;
 
+import com.users.app.exception.SomeException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
-
-import com.users.app.exception.SomeException;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
@@ -23,7 +22,7 @@ public class JwtProvider {
     public void init() {
         try {
             keyStore = KeyStore.getInstance("JKS");
-            InputStream resourceAsStream = getClass().getResourceAsStream("/app.jks");
+            InputStream resourceAsStream = getClass().getResourceAsStream("/springblog.jks");
             keyStore.load(resourceAsStream, "secret".toCharArray());
         } catch (KeyStoreException | CertificateException | NoSuchAlgorithmException | IOException e) {
             throw new SomeException("Exception occured while loading keystore");
@@ -41,7 +40,7 @@ public class JwtProvider {
 
     private PrivateKey getPrivateKey() {
         try {
-            return (PrivateKey) keyStore.getKey("app", "secret".toCharArray());
+            return (PrivateKey) keyStore.getKey("springblog", "secret".toCharArray());
         } catch (KeyStoreException | NoSuchAlgorithmException | UnrecoverableKeyException e) {
             throw new SomeException("Exception occured while retrieving public key from keystore");
         }
@@ -54,7 +53,7 @@ public class JwtProvider {
 
     private PublicKey getPublickey() {
         try {
-            return keyStore.getCertificate("app").getPublicKey();
+            return keyStore.getCertificate("springblog").getPublicKey();
         } catch (KeyStoreException e) {
             throw new SomeException("Exception occured while retrieving public key from keystore");
         }

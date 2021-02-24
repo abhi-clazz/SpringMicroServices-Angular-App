@@ -1,14 +1,9 @@
 package com.app.product.model;
-
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
 import lombok.Data;
 
-
 @Entity
-
 
 @Data
 public class Product {
@@ -20,5 +15,10 @@ public class Product {
 	private double price;
 	private String productImageFile;
 	private String brand;
-
+	private String category;
+	private String description;
+	private String seller;
+	private String model;
+	private String feature;
+	
 }

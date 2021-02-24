@@ -1,5 +1,6 @@
 package com.app.product.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,38 +9,37 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-//import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-//import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+import org.springframework.web.client.RestTemplate;
+
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 
 import com.app.product.model.Product;
 
 
 import com.app.product.service.ProductService;
 
+
 @RestController
 public class ProductController {
 	
 	@Autowired
 	ProductService productService;
-
+	@Autowired
+	RestTemplate restTemplate;
 	@RequestMapping(value="/Products", method = RequestMethod.GET)
-//	@HystrixCommand(fallbackMethod = "getDummyOrders", commandProperties = {
-//			@HystrixProperty(name="execution.isolation.thread.timeoutMilliseconds",value="2000"),
-//			@HystrixProperty(name="circuitBreaker.requestVolumeThershold",value="5"),
-//			@HystrixProperty(name="circuitBreaker.errorThersholdPercentage",value="60"),
-//			@HystrixProperty(name="circuitBreaker.sleeWindowInMilliseconds",value="50000")
-//	},
-//	threadPoolKey = "ordersKey",
-//	
-//			threadPoolProperties = {
-//					@HystrixProperty(name="coreSize",value="10"),
-//					@HystrixProperty(name="maxQueueSize",value="5"),
-//			})
+	@HystrixCommand(fallbackMethod = "getDupeProducts")
 	public List<Product> getProducts(){
 		System.out.println("PRODUCTS_DATA");
+		//restTemplate.getForObject("http://Customer-service/Customers",List.class);
 		return productService.getProducts();
 	}
-	
+	public List<Product> getDupeProducts(){
+		System.out.println("PRODUCTS_DATA");
+		System.out.println("fallbackmethod");
+		List<Product> list=new ArrayList<Product>();
+		return list;
+	}
 	
 	
 	@RequestMapping(value="/Products", method = RequestMethod.POST)

@@ -3,6 +3,7 @@ package com.app.orders.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,10 +25,10 @@ public class OrderController {
 		return orderService.getOrders();
 	}
 	
-	@RequestMapping(value="/Orderss/{id}", method = RequestMethod.GET)
-	public ResponseTemplateVO getOrderdata(@PathVariable Long id)
-	{
-		return orderService.getdata(id);
+	@RequestMapping(value="/Carts", method = RequestMethod.POST)
+	public void getOrderdata(@RequestBody Order order)
+	{System.out.println();
+		orderService.bulkorder(order);
 				
 	}
 	

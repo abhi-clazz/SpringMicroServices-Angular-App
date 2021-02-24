@@ -16,6 +16,11 @@ zuul:
   carts:
    path: /api/CartService/**
    serviceId: CartService
+  tracks:
+   path: /api/TrackService/**
+   serviceId: TrackService
+
+   
 
  
   

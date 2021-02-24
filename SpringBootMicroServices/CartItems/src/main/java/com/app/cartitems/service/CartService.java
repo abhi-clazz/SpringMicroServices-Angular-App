@@ -77,4 +77,9 @@ public class CartService {
 		return product1;
 	}
 
+	public void emptyCart(int id) {
+		// TODO Auto-generated method stub
+		 cartRepository.deleteByUserId(id);
+	}
+
 }

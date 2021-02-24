@@ -73,4 +73,11 @@ import com.app.cartitems.vo.ResponseTemplateVO;
 			return cartService.getCartItemByUserId(id);
 					
 		}
+		@RequestMapping(value="/UserCart/{id}", method = RequestMethod.DELETE)
+		public void emptyCart(@PathVariable int id)
+		{
+			System.out.println("hi hello");
+			 cartService.emptyCart(id);
+					
+		}
 }

@@ -12,6 +12,6 @@ import lombok.NoArgsConstructor;
 public class ResponseTemplateVO {
 	
 	private Order order;
-	private Product product;
+	private Cart cart;
 
 }
