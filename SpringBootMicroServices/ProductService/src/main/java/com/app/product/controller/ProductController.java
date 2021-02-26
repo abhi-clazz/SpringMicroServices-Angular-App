@@ -51,16 +51,25 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value="/Products/{id}", method = RequestMethod.DELETE)
+	
 	public void deleteProduct(@PathVariable int id)
 	{
 		productService.deleteProduct(id);
 	}
 	
 	
+	
 	@RequestMapping(value="/Products/{id}", method = RequestMethod.GET)
+	@HystrixCommand(fallbackMethod = "getDummyProduct")
 	public Product getProduct(@PathVariable int id)
 	{
 		return productService.getProductById(id);
+				
+	}
+	public Product getDummyProduct(@PathVariable int id)
+	{
+		Product  product =new Product();
+		return product;
 				
 	}
 	@RequestMapping(value="/InventoryProducts/{name}", method = RequestMethod.GET)
