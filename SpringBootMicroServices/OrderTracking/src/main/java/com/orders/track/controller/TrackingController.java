@@ -28,6 +28,11 @@ public class TrackingController {
 
 	public Tracking addTracking(@RequestBody  Tracking tracking){
 		return trackingservice.addTrackingDetails(tracking);
+	}@RequestMapping(value="/OrderStatus/{id}", method = RequestMethod.PUT)
+
+	public Tracking updateTracking(@PathVariable Long id,@RequestBody  Tracking tracking){
+		System.out.println(tracking);
+		return trackingservice.updateTrackingDetails(id,tracking);
 	}
 
 }

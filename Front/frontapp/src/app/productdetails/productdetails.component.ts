@@ -40,7 +40,8 @@ uid:any;
         productName:'', 
         price:'', 
         productImageFile:'', 
-        brand:''
+        brand:'',
+        description:''
         
       };
     })

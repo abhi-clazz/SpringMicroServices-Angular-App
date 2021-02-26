@@ -13,7 +13,7 @@
   <button onclick="window.location.href='' "  mat-icon-button  aria-label="Example icon button with a home icon">
     <mat-icon>home</mat-icon>
   </button> 
-  <a mat-button href="/viewcart" class="register btn btn-default">Cart</a>
+  <a mat-button href="/viewcart" class="register btn btn-default "> My Cart<i class='fa fa-shopping-cart fa'><sup>{{cartsize}}</sup></i></a>
     
   <a  mat-button href="/myorders" class="register btn btn-default">My Orders</a>
   <button mat-button (click)="logout()">Logout</button>

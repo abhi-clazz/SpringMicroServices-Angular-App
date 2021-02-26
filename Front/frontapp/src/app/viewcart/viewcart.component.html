@@ -1,3 +1,5 @@
+
+
 <div *ngIf="loader!=null">
 
     <hr>
@@ -39,15 +41,17 @@
       <hr>
       <b>
 Total Amount: Rs-/-{{totalSum}}<hr></b>
-<form (ngSubmit)="buyitem(carts)">
-<button  mat-raised-button color="primary">Buy Cart Items</button></form></div>
+<form >
+<button  mat-raised-button (click)="Checkout()" color="primary">Buy Cart Items</button></form></div>
 </div>
 <div *ngIf="zy==4">
-  <mat-spinner></mat-spinner>
+  <mat-spinner style="margin-left:50%"></mat-spinner>
 </div>
-{{carts}}
 
-<div *ngIf="len==0">
-  No items available in cart
+
+<div   class=' container text-center' *ngIf="len==0">
+<hr>
+<p>Empty Cart</p>
+  <p class=' container '><a href='/' mat-raised-button color="teal">Browse Products</a></p>
 
 </div>

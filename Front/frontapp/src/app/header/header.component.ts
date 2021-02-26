@@ -4,7 +4,10 @@ import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from '
 import { FormControl, FormGroup } from '@angular/forms';
 import { ProductService } from '../product.service';
 import { DataService } from '../data.service';
-import { Observable } from 'rxjs';
+import { cartpload } from '../viewcart/cartpload';
+import { LocalStorageService } from 'ngx-webstorage';
+import {Observable,interval,Subscription} from 'rxjs';
+import { CartService } from '../cart.service';
 import { ProductPayLoad } from '../products/productsPayLoad';
 
 @Component({
@@ -14,14 +17,23 @@ import { ProductPayLoad } from '../products/productsPayLoad';
 })
 export class HeaderComponent implements OnInit {
   searchForm: FormGroup;
-products!:Observable<Array<ProductPayLoad>>
-  constructor(public authService: AuthService,private router: Router,private service:ProductService,private dt:DataService) {
+products!:ProductPayLoad
+cartsize!:any
+s!:Subscription
+carts!: Observable<Array<cartpload>>;
+  constructor(public authService: AuthService,private stg:LocalStorageService,private cs:CartService,private router: Router,private service:ProductService,private dt:DataService) {
     this.searchForm = new FormGroup({
       item: new FormControl()
     });
   }
 
   ngOnInit() {
+if(this.stg.retrieve('uid')!=null)
+{
+this.s=interval(3000).subscribe( val=>{
+this.cs.getAllProducts(this.stg.retrieve('uid')).subscribe(d=>{this.cartsize=d.length})})
+   
+}
   }
 
   logout() {
@@ -31,10 +43,18 @@ products!:Observable<Array<ProductPayLoad>>
   }
   
   search() {
-    this.products=this.service.getProducts(this.searchForm.get('item')!.value)
-    this.dt.setitemData(this.products)
+    this.service.getProducts(this.searchForm.get('item')!.value).subscribe((data:ProductPayLoad)=>
+    {
+      console.log("Data"+data)
+    this.products=data
+    this.dt.setitemData(data)
+    console.log("Data"+data)
+    console.log("Data"+data.productName)
 
     this.router.navigateByUrl('/productitems');
+  }
+      )
+
 
   }
 }

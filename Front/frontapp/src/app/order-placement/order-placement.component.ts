@@ -22,19 +22,20 @@ export class OrderPlacementComponent implements OnInit {
   firstFormGroup!: FormGroup;
   secondFormGroup!: FormGroup;
   orderpayload!:Orderpayload
+  isBuyingEntireCart!:boolean
   isEditable = false;
+permaLink1!:any
 so:any;
 
   constructor(public activatedRoute: ActivatedRoute,private dtt:DataService,private cs:CartService,private stg:LocalStorageService,private route :Router,private router:ActivatedRoute,private _formBuilder: FormBuilder,private productservice:ProductService) { 
   this.dtt.apiData1$.subscribe(data=>this.dttt21=data)
+this.dtt.dat$.subscribe(data=>{
+console.log(data);
+this.isBuyingEntireCart=data})
   this.dtt.apiCartData$.subscribe(data=>{
-    console.log(data);
     this.q=data;
-    console.log(this.q.price)
   })
-  console.log(this.dttt21)
 this.dtt.setData3(this.dttt21)
-console.log(this.dttt21)
 this.orderpayload = {
   userId:'',
   orderId:'', productId:'', city:'', name:'',saddress:'', baddress:'', quantity:'', pin:''
@@ -42,14 +43,9 @@ this.orderpayload = {
 }
   
   ngOnInit(): void {
-  //   this.state$ = this.activatedRoute.paramMap
-  //     .pipe(map(() =>  console.log( window.history.state)))
-  // console.log( this.state$)
-  //   this.router.params.subscribe(params => {
-  //     this.permaLink = params['id'];
-  //     this.q=params['id1'];
-  //     this.c=params['id2']
-  //   });
+  this.activatedRoute.params.subscribe(params => {
+      this.permaLink1 = params['id'];
+    });
     this.firstFormGroup = this._formBuilder.group({
       address: ['', Validators.required],      badd: ['', Validators.required],
       city: ['', Validators.required],      pin: ['', Validators.required],
@@ -59,38 +55,54 @@ this.orderpayload = {
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
-    console.log(this.so);
 
   }
   
  
 pay()
 {
-  // console.log(this.secondFormGroup.value);
-  console.log(this.firstFormGroup.get('city')!.value);
-  this.orderpayload.city=this.firstFormGroup.get('city')!.value;
-  this.orderpayload.name= this.firstFormGroup.get('name')!.value
-  this.orderpayload.productId=this.q.productId;
-  this.orderpayload.saddress=this.firstFormGroup.get('address')!.value
-  this.orderpayload.baddress=this.firstFormGroup.get('badd')!.value
-  this.orderpayload.pin=this.firstFormGroup.get('pin')!.value
-  this.orderpayload.userId=this.stg.retrieve('uid');
-  this.orderpayload.quantity=this.q.quantity
+
+  if(this.permaLink1 ==1)
+{
+  
+    this.orderpayload.city=this.firstFormGroup.get('city')!.value;
+    this.orderpayload.name= this.firstFormGroup.get('name')!.value
+    this.orderpayload.saddress=this.firstFormGroup.get('address')!.value
+    this.orderpayload.baddress=this.firstFormGroup.get('badd')!.value
+    this.orderpayload.pin=this.firstFormGroup.get('pin')!.value
+    this.orderpayload.userId=this.stg.retrieve('uid');
+    
+    this.productservice.checkout(this.orderpayload).subscribe(data => {
+      
+      
+            this.route.navigateByUrl('ordersuccess')
+          }, error => {
+          });
+      
+      }
+ 
+  if(this.isBuyingEntireCart!=true)
+  {
+    this.orderpayload.city=this.firstFormGroup.get('city')!.value;
+    this.orderpayload.name= this.firstFormGroup.get('name')!.value
+    this.orderpayload.productId=this.q.productId;
+    this.orderpayload.saddress=this.firstFormGroup.get('address')!.value
+    this.orderpayload.baddress=this.firstFormGroup.get('badd')!.value
+    this.orderpayload.pin=this.firstFormGroup.get('pin')!.value
+    this.orderpayload.userId=this.stg.retrieve('uid');
+    this.orderpayload.quantity=this.q.quantity
+  
 
     this.productservice.placeorder(this.orderpayload).subscribe(data => {
-      console.log(data);
-      console.log(data.orderId);
-if( this.c!=null)
-{
-  console.log("placing order from cart")
-this.cs.deletecart(this.c).subscribe()
-}
+      
+this.cs.deletecart(this.q.cartId).subscribe()
+
       this.dtt.setData(data.orderId)
       this.route.navigateByUrl('ordersuccess')
     }, error => {
-      console.log('register failed');
     });
 
+}
 }
 }
 

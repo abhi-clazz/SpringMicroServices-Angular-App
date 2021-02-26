@@ -14,9 +14,13 @@ export class ProductService {
    getAllProducts(): Observable<Array<ProductPayLoad>>{
     return this.httpClient.get<Array<ProductPayLoad>>("http://localhost:8100/api/Product-service/Products");
   }
-   getProducts(name:String): Observable<Array<ProductPayLoad>>{
-     console.log(name)
-             return this.httpClient.get<Array<ProductPayLoad>>("http://localhost:8046/InventoryProducts/"+name);
+  order(orderPayload: Orderpayload):Observable<any>{
+    return this.httpClient.post("http://localhost:8100/api/App-OrderService/Carts",orderPayload);
+  }
+   getProducts(name2:String): Observable<ProductPayLoad>{
+     console.log(name2)
+     console.log(name2)
+     return this.httpClient.get<ProductPayLoad>(`http://localhost:8100/api/Product-service/InventoryProducts/${name2}`);
 
   }
 
@@ -26,4 +30,8 @@ export class ProductService {
   placeorder(orderPayload: Orderpayload): Observable<any> {
     return this.httpClient.post("http://localhost:8100/api/App-OrderService/Orders/", orderPayload);
 }
+checkout(orderPayload: Orderpayload): Observable<any> {
+  return this.httpClient.post("http://localhost:8100/api/App-OrderService/Carts/", orderPayload);
+}
+
 }

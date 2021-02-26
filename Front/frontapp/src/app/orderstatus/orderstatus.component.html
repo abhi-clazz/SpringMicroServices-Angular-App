@@ -1,0 +1,21 @@
+
+      <div>  <h5 *ngIf= "status!=undefined">ORDER <span >#ODAPP{{status.orderId}}</span></h5>
+    </div>
+
+    <div >
+                    <p *ngIf= "status!=undefined">TrackingID: <span class="font-weight-bold">AWBZPTRZ{{status.trackingId}}</span></p>
+                </div>
+    <hr>
+    <div class="container">
+        <ul  *ngIf ="status!=undefined"  class="ordertracker">
+            <li class="completed">Confirmed</li>
+            <li [ngClass]=" (status.processed)? 'completed':'step0'">processed</li>
+            <li [ngClass]=" (status.processed && status.shipped)? 'completed':''">Shipped</li>
+            <li [ngClass]=" (status.processed && status.shipped && status.delivered)? 'completed':'step0'">Delivered</li>
+        </ul>
+      </div>
+      <br>
+
+      <h4 class='text-center' *ngIf ="status==undefined"><i>Hey ! We Recieved Your order.We are yet to confirm you order.</i></h4>
+       <br>  
+          

@@ -9,4 +9,5 @@ export class cartpayload
 price!: String;
 productImageFile!: String;
 brand!: String;
+description!: String;
 }

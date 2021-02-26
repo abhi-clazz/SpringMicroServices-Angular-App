@@ -30,13 +30,19 @@
     </mat-card-content>
     <mat-card-actions align="end">
       <button mat-raised-button color="primary" type="submit">Login</button>
-      <div *ngIf="f==true">
-        <mat-spinner>Authenticating</mat-spinner>
-      </div>
-      <!-- <div *ngIf="yo==5">
-un authorized      </div> -->
+      
+    
     </mat-card-actions>
+  <div class='text-center'  *ngIf="loading==true">
+    <mat-spinner style="margin-left:50%" color='accent'  [diameter]="50"></mat-spinner>
+<p class='text-center'>Authenticating...</p>
+  </div>
   </form>
+ 
+  <div   class='text-center'  *ngIf="this.isauthenticated==false">
+   <p>Invalid Credntials</p>   </div>
     </mat-card>
-    </div>
    
+   
+    </div>
+  

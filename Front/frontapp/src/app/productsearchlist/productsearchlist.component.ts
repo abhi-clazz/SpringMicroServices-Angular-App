@@ -11,11 +11,13 @@ import { ProductPayLoad } from '../products/productsPayLoad';
   styleUrls: ['./productsearchlist.component.css']
 })
 export class ProductsearchlistComponent implements OnInit {
-  products!:Observable<Array<ProductPayLoad>>
+  products:any
 
   constructor(private productService:ProductService,private navigator: Router,private dtt:DataService) { }
   ngOnInit(): void {
-    this.dtt.apiOrderData$.subscribe(data=>this.products=data)
+    this.dtt.itemData$.subscribe(data=>{this.products=data
+      console.log(data+"ooo");
+    })
 
   }
   buy(a:any)

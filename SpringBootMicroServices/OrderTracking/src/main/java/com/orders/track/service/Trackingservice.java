@@ -19,7 +19,18 @@ TrackingRepository repository;
 	
 	public Tracking addTrackingDetails(Tracking tracking)
 	{
+		
 		return repository.save(tracking);
+	}
+	public Tracking updateTrackingDetails(Long id,Tracking z)
+	{
+System.out.println(id);
+		Tracking t=	repository.findByOrderId(id);
+		t.setProcessed(z.isProcessed());
+		t.setShipped(z.isShipped());
+		t.setDelivered(z.isDelivered());
+		
+		return repository.save(t);
 	}
 
 }

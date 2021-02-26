@@ -37,6 +37,8 @@ import { ShippingComponent } from './shipping/shipping.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { ProductsearchlistComponent } from './productsearchlist/productsearchlist.component';
+import { OrderstatusComponent } from './orderstatus/orderstatus.component';
+import { SellerComponent } from './seller/seller.component';
 
 
 @NgModule({
@@ -54,7 +56,9 @@ import { ProductsearchlistComponent } from './productsearchlist/productsearchlis
     ViewcartComponent,
     MyordersComponent,
     ShippingComponent,
-    ProductsearchlistComponent
+    ProductsearchlistComponent,
+    OrderstatusComponent,
+    SellerComponent
   ],
   imports: [
     BrowserModule,
@@ -71,10 +75,12 @@ import { ProductsearchlistComponent } from './productsearchlist/productsearchlis
       {path: '', component: ProductsComponent,canActivate: [AuthGuard]},
       {path: 'register', component: RegisterComponent},
       {path: 'product/:id', component: ProductdetailsComponent,canActivate: [AuthGuard]},
-      // {path: 'placeorder/:id/:id1', component: OrderPlacementComponent,canActivate: [AuthGuard]},
+     {path: 'placeorder/:id', component: OrderPlacementComponent,canActivate: [AuthGuard]},
       {path: 'placeorder', component: OrderPlacementComponent,canActivate: [AuthGuard]},
       {path: 'ship', component: ShippingComponent,canActivate: [AuthGuard]},
       {path: 'productitems', component: ProductsearchlistComponent,canActivate: [AuthGuard]},
+      {path: 'OrderStatus', component: OrderstatusComponent},
+      {path: 'seller', component: SellerComponent},
 
       {path: 'login', component: LoginComponent},
       {path: 'viewcart', component: ViewcartComponent,canActivate: [AuthGuard]},

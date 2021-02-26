@@ -5,6 +5,7 @@ import { LocalStorageService } from 'ngx-webstorage';
 import {Observable} from 'rxjs';
 import { CartService } from '../cart.service';
 import { DataService } from '../data.service';
+import { ProductService } from '../product.service';
 import { cartpayload } from '../productdetails/cartpayload';
 import { cartpload } from './cartpload';
 
@@ -22,7 +23,7 @@ dp!:String;
 zy:number=4;
 len:number=1;
 cid:any;
-  constructor(private dt:DataService,private cs:CartService,private router:Router ,private stg:LocalStorageService) { 
+  constructor(private dt:DataService,private cs:CartService,private prod:ProductService,private router:Router ,private stg:LocalStorageService) { 
     
   }
 
@@ -51,31 +52,12 @@ cid:any;
           this.totalSum=this.totalSum+(a.quantity*a.price)})
         console.log(this.totalSum)
       })
-      // if(this.zy!=3)
-      // {
-      // this.zy=2
-      // }
-    //.subscribe((data:cartpload) => {
-     
-    //    this.carts=data
-    //    console.log(this.carts)
-    //     // this.dtt.setData1(this.product)
-   
-    //    },(err: any) => {
-    //      console.log('Failure Response');
-    //    })}
+  
    
     this.registerForm = new FormGroup({
       q: new FormControl('')
     });
   
-}
-buy(a:any)
-{
-  this.dt.setApiCartData(a);
-  this.router.navigateByUrl('/placeorder')
-
-
 }
 updatecart(a:any,dt:any)
 {
@@ -95,33 +77,19 @@ this.router.onSameUrlNavigation='reload'
 
 
 }
-
-buyitem(a:any)
+buy(a:any)
 {
-//   console.log(a.cartId)
-// console.log(this.cid)
-this.carts=this.cs.getAllProducts(this.stg.retrieve('somerandom'))
-     
-      this.carts.forEach(d=>{
-        console.log(d.length)
-        this.len=d.length
-        this.zy=3
-        if(d.length>0)
-        {
-         
+  this.dt.setApiCartData(a);
+  this.router.navigateByUrl('/placeorder')
 
-          this.loader="loaded"; 
-          this.dp="nok"
-        }
-        d.map(a=>{
-          console.log(a.cartId);
-          this.cid=a.cartId;
-          this.totalSum=this.totalSum+(a.quantity*a.price)})
-        console.log(this.totalSum)
-      })
-      console.log(this.cid)
-      this.router.navigateByUrl('/placeorder')
+
 }
+Checkout()
+{
+ this.dt.setDat(true);
+     this.router.navigateByUrl('/placeorder/1')
+}
+
 deletecart(a:any)
 {
   this.cs.deletecart(a).subscribe((data:any)=>  {

@@ -14,8 +14,8 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   loginPayload: LoginPayload;
-yo!:Number;
-f:any;
+loading!:boolean;
+isauthenticated!:boolean;
   constructor(private authService: AuthService, private dt:DataService, private router: Router) {
 
     this.loginForm = new FormGroup({
@@ -33,32 +33,19 @@ f:any;
   }
 
   onSubmit() {
-    
-    this.yo=2;
+    this.loading=true;
     this.loginPayload.username = this.loginForm.get('username')!.value
     this.loginPayload.password = this.loginForm.get('password')!.value;
-   // this.dt.sharedData=this.loginForm.get('username')!.value
-
-    this.authService.login(this.loginPayload).subscribe(data => {
-      console.log(data)
-      this.f=true;
-
-      // this.dt.sharedData=this.loginPayload.username
-      console.log(this.authService.flag)
-
-      if (this.authService.flag==2) {
-        console.log('login success');
+    this.authService.login(this.loginPayload).subscribe(data => 
+      {
+        this.loading=false;
+        this.isauthenticated=true;
         this.dt.setData(data)
-        this.yo=3;
         this.router.navigateByUrl('/home');
-      } else  {
         
-
-        console.log('Login failed');
-      }
-    });
-
-    this.yo=5
+      } ,error=>{this.loading=false;this.isauthenticated=false;
+        console.log(error)});
+    
 
   }
 }

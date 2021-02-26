@@ -7,7 +7,7 @@ export class ProductPayLoad
       price!: String;
       productImageFile!: String;
       brand!: String;
-     
+     description!:String;
    
   }
   

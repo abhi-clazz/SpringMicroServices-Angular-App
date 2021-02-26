@@ -1,0 +1,91 @@
+<div class="container">
+   
+    <div class="jumbotron text-center">
+    <select (change)="onChange($event)" formControlName="orderupdatemode"  type="text">
+      <option value="shipping">Shiping Agent</option>
+      <option  value="processing">warehouse agent</option>
+      <option  value="delivery">Delivery Agent</option>
+      <option value="seller">Seller</option>
+
+
+    </select>
+  </div>
+</div>
+<div *ngIf="selectedType == 'seller'" >
+  <form  [formGroup]="updateForm" (ngSubmit)="confirm()" novalidate>
+  
+    <mat-form-field appearance="fill">
+          <mat-label>Input</mat-label>
+          <input matInput   [formControlName]="'orderId'" placeholder="Order Number">
+        </mat-form-field>
+        
+      <button mat-flat-button color="primary">Confirm Order</button>
+  </form>
+    </div>
+  <div *ngIf="selectedType == 'processing'" >
+<form  [formGroup]="updateForm" (ngSubmit)="deliver1()" novalidate>
+
+  <mat-form-field appearance="fill">
+        <mat-label>Input</mat-label>
+        <input matInput   [formControlName]="'orderId'" placeholder="Order Number">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Select</mat-label>
+        <mat-select>
+            <mat-option value="one">Processed</mat-option>
+            
+
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Deatils</mat-label>
+        <textarea matInput></textarea>
+      </mat-form-field>
+    <button mat-flat-button color="primary">Update</button>
+</form>
+  </div>
+  
+  <div *ngIf="selectedType == 'shipping'">
+    <label>Shipping Details</label>
+    <form  [formGroup]="updateForm" (ngSubmit)="deliver2()" novalidate>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Input</mat-label>
+        <input matInput   [formControlName]="'orderId'" placeholder="Order Number">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Select</mat-label>
+        <mat-select>
+         
+          <mat-option value="two">Shipped</mat-option>
+
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Details</mat-label>
+        <textarea matInput></textarea>
+      </mat-form-field>
+    <button  type="submit" mat-flat-button color="primary">Update</button>
+    </form>
+  </div>
+  <div *ngIf="selectedType == 'delivery'" >
+  <form  [formGroup]="updateForm" (ngSubmit)="update3()" novalidate>
+<mat-form-field appearance="fill">
+        <mat-label>Input</mat-label>
+        <input matInput   [formControlName]="'orderId'" placeholder="Order Number">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Select</mat-label>
+        <mat-select>
+         
+            <mat-option value="two">Delivered</mat-option>
+
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Details</mat-label>
+        <textarea matInput></textarea>
+      </mat-form-field>
+    <button mat-flat-button color="primary">Update</button>
+</form>
+  </div>

@@ -18,3 +18,29 @@
    border:1px solid grey;
    background:#fffeff;
  }
+*.icon-blue {
+  color: #0088cc;
+}
+
+*.icon-grey {
+  color: grey;
+}
+
+i {
+  width: 45px;
+  text-align: center;
+  vertical-align: middle;
+  position: relative;
+}
+sup
+{
+font-size:15px;
+font-style:bold;
+color:orange;}
+
+  
+  
+  
+  
+
+

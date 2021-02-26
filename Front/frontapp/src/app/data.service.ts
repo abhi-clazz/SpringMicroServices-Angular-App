@@ -12,6 +12,13 @@ export class DataService {
   {
     this.apiData.next(data)
   }
+ private dat=new BehaviorSubject<any>(null);
+  public dat$=this.apiData.asObservable();
+
+  setDat(data:any)
+  {
+    this.dat.next(data)
+  }
 
   private apiOrderData=new BehaviorSubject<any>(null);
   public apiOrderData$=this.apiData.asObservable();
@@ -50,5 +57,12 @@ export class DataService {
   setitemData(data:any)
   {
     this.itemData.next(data)
+  }
+  private statusData=new BehaviorSubject<any>(null);
+  public statusData$=this.statusData.asObservable();
+
+  setStatusData(data:any)
+  {
+    this.statusData.next(data)
   }
 }
